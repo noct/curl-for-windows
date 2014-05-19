@@ -11,11 +11,11 @@ curl_root = os.path.join(os.path.abspath(root_dir), 'curl')
 
 sys.path.insert(0, os.path.join(root_dir, 'build', 'gyp', 'pylib'))
 
-try:
-    import gyp
-except ImportError:
-    print('You need to install gyp in build/gyp first. See the README.')
-    sys.exit(42)
+#try:
+import gyp
+#except ImportError:
+ #   print('You need to install gyp in build/gyp first. See the README.')
+  #  sys.exit(42)
 
 # parse our options
 parser = optparse.OptionParser()
@@ -110,6 +110,8 @@ args = []
 configure_buildsystem(args)
 configure_defines(args)
 
-# build
 gyp_args = list(args)
-run_gyp(gyp_args)
+
+# build
+if __name__ == '__main__':
+  run_gyp(gyp_args)
