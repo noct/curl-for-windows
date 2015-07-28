@@ -105,6 +105,7 @@ def run_gyp(args):
 
 # gyp arguments
 args = []
+args.append("--no-parallel")
 
 # gyp configure
 configure_buildsystem(args)
