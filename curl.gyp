@@ -28,6 +28,7 @@
         'HAVE_ZLIB',
         'HAVE_LIBZ',
         'BUILDING_LIBCURL',
+        'HTTP_ONLY',
       ],
       'dependencies': [
         'openssl.gyp:openssl',
