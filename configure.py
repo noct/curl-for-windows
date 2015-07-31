@@ -3,11 +3,15 @@ import os
 import sys
 import shutil
 import platform
+import fnmatch
+import os
 
 script_dir = os.path.dirname(__file__)
 root_dir = os.path.normpath(script_dir)
 output_dir = os.path.join(os.path.abspath(root_dir), 'out')
 curl_root = os.path.join(os.path.abspath(root_dir), 'curl')
+openssl_root = os.path.join(os.path.abspath(root_dir), 'openssl\\openssl')
+openssl_inc = os.path.join(os.path.abspath(root_dir), 'openssl\\openssl\\include\\openssl')
 
 sys.path.insert(0, os.path.join(root_dir, 'build', 'gyp', 'pylib'))
 
@@ -85,6 +89,24 @@ def configure_buildsystem(o):
     # copy tool_hugehelp.c
     shutil.copy(os.path.join(root_dir, "build\\tool_hugehelp.c"),
                 os.path.join(curl_root, "lib\\tool_hugehelp.c"))
+
+    # copy openssl headers
+    def copy_headers(src, dst):
+      matches = []
+      for root, dirnames, filenames in os.walk(src):
+        for filename in fnmatch.filter(filenames, '*.h'):
+          shutil.copy(os.path.join(root, filename), dst)
+
+    try:
+      os.makedirs(openssl_inc)
+    except:
+      pass
+
+    shutil.copy(os.path.join(openssl_root, "..\\config\opensslconf.h"), openssl_inc)
+    shutil.copy(os.path.join(openssl_root, "e_os.h"), openssl_inc)
+    shutil.copy(os.path.join(openssl_root, "e_os2.h"), openssl_inc)
+    copy_headers(os.path.join(openssl_root, "crypto"), openssl_inc)
+    copy_headers(os.path.join(openssl_root, "ssl"), openssl_inc)
 
 
 def host_arch():
