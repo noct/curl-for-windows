@@ -13,3 +13,6 @@
 [submodule "openssl/openssl"]
 	path = openssl/openssl
 	url = https://github.com/openssl/openssl.git
+[submodule "ca-bundle"]
+	path = ca-bundle
+	url = https://github.com/bagder/ca-bundle.git
