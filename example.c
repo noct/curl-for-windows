@@ -8,9 +8,10 @@ int main(void)
 
   curl = curl_easy_init();
   if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "http://example.com");
-    /* example.com is redirected, so we tell libcurl to follow redirection */
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_URL, "https://example.com");
+	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 1);
+	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1);
+	curl_easy_setopt(curl, CURLOPT_CAINFO, "../../ca-bundle/ca-bundle.crt");
 
     /* Perform the request, res will get the return code */
     res = curl_easy_perform(curl);
