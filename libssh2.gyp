@@ -11,8 +11,8 @@
         'NETSNMP_ENABLE_IPV6'
       ],
       'include_dirs': [
+        '.',
         'libssh2/src',
-        'libssh2/win32',
         'libssh2/include',
       ],
       'sources': [
