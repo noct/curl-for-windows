@@ -62,6 +62,7 @@ def configure_buildsystem(o):
     """
     Configures buildsystem
     """
+    global output_dir
 
     # gyp target
     args.append(os.path.join(root_dir, 'curl.gyp'))
@@ -75,11 +76,15 @@ def configure_buildsystem(o):
     # msvs toolchain
     if options.toolchain:
         o.extend(['-G', 'msvs_version=' + options.toolchain])
+        output_dir = os.path.join(output_dir, 'vs' + options.toolchain)
+
+    # target arch
+    output_dir = os.path.join(output_dir, options.target_arch)
 
     # gyp
     o.append('--depth=' + root_dir)
-    o.append('-Goutput_dir=' + os.path.join(output_dir, options.target_arch))
-    o.append('--generator-output=' + os.path.join(output_dir, options.target_arch))
+    o.append('-Goutput_dir=' + output_dir)
+    o.append('--generator-output=' + output_dir)
     o.append('--suffix=.' + options.target_arch)
 
     # copy curlbuild.h
