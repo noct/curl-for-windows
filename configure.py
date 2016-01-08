@@ -85,7 +85,6 @@ def configure_buildsystem(o):
     o.append('--depth=' + root_dir)
     o.append('-Goutput_dir=' + output_dir)
     o.append('--generator-output=' + output_dir)
-    o.append('--suffix=.' + options.target_arch)
 
     # copy curlbuild.h
     shutil.copy(os.path.join(root_dir, "build\\curlbuild.h"),
