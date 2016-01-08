@@ -7,7 +7,7 @@
   'targets':
   [
     {
-      'target_name': 'libcurl',
+      'target_name': 'curl',
       'type': '<(library)',
       'include_dirs': [
         'build', # curl configuration
@@ -31,7 +31,7 @@
       'dependencies': [
         'openssl.gyp:openssl',
         'zlib.gyp:zlib',
-        'libssh2.gyp:libssh2'
+        'libssh2.gyp:ssh2'
       ],
       'direct_dependent_settings': {
         'conditions': [
@@ -198,18 +198,18 @@
       ],
     },
 	{
-	  'target_name': 'curl',
+	  'target_name': 'curl-cli',
 	  'type': 'executable',
 	  'dependencies': [
-		'libcurl',
+		  'curl',
 	  ],
 	  'include_dirs': [
         '.',
-        'curl/lib',		
+        'curl/lib',
         'curl/src',
 	  ],
 	  'defines': [
-       
+
 	  ],
 	  'sources': [
       'curl/src/tool_binmode.c',
@@ -255,11 +255,11 @@
       'target_name': 'example',
       'type': 'executable',
       'dependencies': [
-        'libcurl',
+        'curl',
       ],
       'sources' : [
         'example.c'
-      ],	  
+      ],
     },
     #{
       # todo: tests

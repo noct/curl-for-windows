@@ -5,7 +5,7 @@
   ],
   'targets': [
     {
-      'target_name': 'libssh2',
+      'target_name': 'ssh2',
       'type': '<(library)',
       'defines': [
         'NETSNMP_ENABLE_IPV6'
